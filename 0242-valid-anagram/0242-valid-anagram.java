@@ -1,6 +1,7 @@
 import java.util.*;
 class Solution {
     public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) return false;
         HashMap <Character, Integer> freq1 = new HashMap<>();
         HashMap <Character, Integer> freq2 = new HashMap<>();
         for (char c1 : s.toCharArray())
