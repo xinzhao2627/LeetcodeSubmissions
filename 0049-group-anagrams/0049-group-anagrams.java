@@ -6,15 +6,15 @@ class Solution {
         for (String s: strs){
             char[] ca = s.toCharArray();
             Arrays.sort(ca);
-            ArrayList<String> words = (list.get(String.valueOf(ca)) == null) 
+            String sca = String.valueOf(ca);
+            ArrayList<String> words = (list.get(sca) == null) 
                 ? new ArrayList<>()
-                : list.get(String.valueOf(ca)) 
+                : list.get(sca) 
             ;
             words.add(s);
-            list.put(String.valueOf(ca), words);
+            list.put(sca, words);
         }
         list.forEach( (k, v) -> output.add(v));
-
         return output;
     }
 }
