@@ -7,14 +7,12 @@ var isValid = function(s) {
     const toClose = []
     const close = [')', ']', '}']
     const open = ['(', '[', '{']
-    for (let i = 0 ; i < s.length; i++){
-        const c = s.charAt(i)
+    for (const c of s){
         const index = close.indexOf(c)
         if (index !== -1){
-            if (toClose.length === 0) return false
-            if (toClose[toClose.length - 1] !== open[index]) return false
-            toClose.pop() 
-        } else toClose.push(c)
+            if (toClose.length === 0 || open[index] !== toClose.pop()) return false
+        }     
+        else toClose.push(c)
     }
     if (toClose.length) return false
     return true
