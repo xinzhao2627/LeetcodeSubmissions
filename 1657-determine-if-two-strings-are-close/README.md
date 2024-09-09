@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/determine-if-two-strings-are-close/?source=submission-noac">1657. Determine if Two Strings Are Close</a></h2><h3>Medium</h3><hr><p>Two strings are considered <strong>close</strong> if you can attain one from the other using the following operations:</p>
+<h2><a href="https://leetcode.com/problems/determine-if-two-strings-are-close/?envType=study-plan-v2&envId=leetcode-75">1657. Determine if Two Strings Are Close</a></h2><h3>Medium</h3><hr><p>Two strings are considered <strong>close</strong> if you can attain one from the other using the following operations:</p>
 
 <ul>
 	<li>Operation 1: Swap any two <strong>existing</strong> characters.
