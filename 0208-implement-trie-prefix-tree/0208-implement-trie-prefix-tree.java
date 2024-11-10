@@ -1,85 +1,49 @@
-// import java.util.*;
-// class Trie {
-//     public class prefixNode {
-//         HashMap<Character, prefixNode> children = new HashMap<>();
-//         boolean endLetter = false; 
-//     }
-//     prefixNode root;
-//     public Trie() {
-//         root = new prefixNode();
-//     }
-    
-//     public void insert(String word) {
-//         prefixNode curr = root;
-//         for (char c : word.toCharArray()){
-//             if (curr.children.get(c) == null) 
-//                 curr.children.put(c, new prefixNode());
-
-//             curr = curr.children.get(c);
-//         }
-//         curr.endLetter = true;
-//     }
-    
-//     public boolean search(String word) {
-//         prefixNode curr = root;
-//         for (char c : word.toCharArray()){
-//             if (curr.children.get(c) == null) return false;
-//             curr = curr.children.get(c);
-//         }
-//         return curr.endLetter;
-//     }
-    
-//     public boolean startsWith(String prefix) {
-//         prefixNode curr = root;
-
-//         for (char c : prefix.toCharArray()){
-//             if (curr.children.get(c) == null) return false;
-//             curr = curr.children.get(c);
-//         }
-//         return true;
-//     }
-// }
-
-// /**
-//  * Your Trie object will be instantiated and called as such:
-//  * Trie obj = new Trie();
-//  * obj.insert(word);
-//  * boolean param_2 = obj.search(word);
-//  * boolean param_3 = obj.startsWith(prefix);
-//  */
-
-import java.util.HashMap;
-
+import java.util.*;
 class Trie {
-    private HashMap<Character, Object> root;
-
+    public class prefixNode {
+        HashMap<Character, prefixNode> children = new HashMap<>();
+        boolean endLetter = false; 
+    }
+    prefixNode root;
     public Trie() {
-        root = new HashMap<>();
+        root = new prefixNode();
     }
-
+    
     public void insert(String word) {
-        HashMap<Character, Object> curr = root;
-        for (char c : word.toCharArray()) {
-            curr = (HashMap<Character, Object>) curr.computeIfAbsent(c, k -> new HashMap<>());
-        }
-        curr.put('*', null); // Marker for end of word
-    }
+        prefixNode curr = root;
+        for (char c : word.toCharArray()){
+            if (curr.children.get(c) == null) 
+                curr.children.put(c, new prefixNode());
 
+            curr = curr.children.get(c);
+        }
+        curr.endLetter = true;
+    }
+    
     public boolean search(String word) {
-        HashMap<Character, Object> curr = root;
-        for (char c : word.toCharArray()) {
-            if (!curr.containsKey(c)) return false;
-            curr = (HashMap<Character, Object>) curr.get(c);
+        prefixNode curr = root;
+        for (char c : word.toCharArray()){
+            if (curr.children.get(c) == null) return false;
+            curr = curr.children.get(c);
         }
-        return curr.containsKey('*'); // Check for end marker
+        return curr.endLetter;
     }
-
+    
     public boolean startsWith(String prefix) {
-        HashMap<Character, Object> curr = root;
-        for (char c : prefix.toCharArray()) {
-            if (!curr.containsKey(c)) return false;
-            curr = (HashMap<Character, Object>) curr.get(c);
+        prefixNode curr = root;
+
+        for (char c : prefix.toCharArray()){
+            if (curr.children.get(c) == null) return false;
+            curr = curr.children.get(c);
         }
         return true;
     }
 }
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */
