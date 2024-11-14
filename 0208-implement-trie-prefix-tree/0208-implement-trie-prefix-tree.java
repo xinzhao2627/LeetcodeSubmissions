@@ -1,41 +1,41 @@
 import java.util.*;
 class Trie {
-    public class prefixNode {
-        HashMap<Character, prefixNode> children = new HashMap<>();
-        boolean endLetter = false; 
+    class pfTree {
+        HashMap<Character, pfTree> children = new HashMap<>();
+        boolean last = false;
     }
-    prefixNode root;
+    pfTree root;
     public Trie() {
-        root = new prefixNode();
+       root = new pfTree();
     }
-    
+   
     public void insert(String word) {
-        prefixNode curr = root;
+        pfTree cur = root;
         for (char c : word.toCharArray()){
-            if (curr.children.get(c) == null) 
-                curr.children.put(c, new prefixNode());
-
-            curr = curr.children.get(c);
+            if (cur.children.get(c) == null){
+                cur.children.put(c, new pfTree());
+            }
+            cur = cur.children.get(c);
         }
-        curr.endLetter = true;
+        cur.last = true;
     }
-    
+   
     public boolean search(String word) {
-        prefixNode curr = root;
-        for (char c : word.toCharArray()){
-            if (curr.children.get(c) == null) return false;
-            curr = curr.children.get(c);
+        pfTree cur = root;
+        for (char c: word.toCharArray()){
+            if (cur.children.get(c) == null) return false;
+            cur = cur.children.get(c);
         }
-        return curr.endLetter;
+        return cur.last;
     }
-    
+   
     public boolean startsWith(String prefix) {
-        prefixNode curr = root;
-
-        for (char c : prefix.toCharArray()){
-            if (curr.children.get(c) == null) return false;
-            curr = curr.children.get(c);
+        pfTree cur = root;
+        for (char c: prefix.toCharArray()){
+            if (cur.children.get(c) == null) return false;
+            cur = cur.children.get(c);
         }
+
         return true;
     }
 }
