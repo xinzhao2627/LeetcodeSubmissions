@@ -1,15 +1,16 @@
 import java.util.*;
 class Solution {
     public int maxProfit(int[] prices) {
-        int cheapest = Integer.MAX_VALUE, max_profit = 0;
+        int cheapest = Integer.MAX_VALUE;
+        int output = 0;
 
-        for (int p: prices){
-            cheapest = (p < cheapest) ? p : cheapest;
+        for (int i = 0; i < prices.length; i++){
+            cheapest = (prices[i] < cheapest) ? prices[i] : cheapest;
 
-            max_profit = ((p - cheapest) > max_profit) ? p-cheapest : max_profit;
+            output = ((prices[i] - cheapest) > output) ? prices[i] - cheapest : output;
         }
 
 
-        return max_profit;
+        return output;
     }
 }
