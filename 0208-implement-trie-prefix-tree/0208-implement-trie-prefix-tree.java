@@ -1,39 +1,49 @@
 import java.util.*;
+class pft {
+    HashMap<Character, pft> branches =  new HashMap<>();
+    boolean end = false;
+}
 class Trie {
-    class pfTree {
-        HashMap<Character, pfTree> children = new HashMap<>();
-        boolean last = false;
-    }
-    pfTree root;
+    pft main;
     public Trie() {
-       root = new pfTree();
+        main = new pft();
     }
    
     public void insert(String word) {
-        pfTree cur = root;
+        pft cur = main;
+
         for (char c : word.toCharArray()){
-            if (cur.children.get(c) == null){
-                cur.children.put(c, new pfTree());
+            if (!cur.branches.containsKey(c)){
+                cur.branches.put(c, new pft());
             }
-            cur = cur.children.get(c);
+            cur = cur.branches.get(c);
         }
-        cur.last = true;
+        cur.end = true;
+        
     }
    
     public boolean search(String word) {
-        pfTree cur = root;
+        pft cur = main;
+
         for (char c: word.toCharArray()){
-            if (cur.children.get(c) == null) return false;
-            cur = cur.children.get(c);
+            if (!cur.branches.containsKey(c)){
+                return false;
+            }
+            cur = cur.branches.get(c);
         }
-        return cur.last;
+
+        return cur.end;
+
     }
    
     public boolean startsWith(String prefix) {
-        pfTree cur = root;
+        pft cur = main;
+
         for (char c: prefix.toCharArray()){
-            if (cur.children.get(c) == null) return false;
-            cur = cur.children.get(c);
+            if (!cur.branches.containsKey(c)){
+                return false;
+            }
+            cur = cur.branches.get(c);
         }
 
         return true;
