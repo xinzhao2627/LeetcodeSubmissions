@@ -1,22 +1,19 @@
 import java.util.*;
 class KthLargest {
-    PriorityQueue<Integer> heap;
-    int k ;
+    PriorityQueue<Integer> pq;
+    int k;
     public KthLargest(int k, int[] nums) {
+        pq = new PriorityQueue<>();
         this.k = k;
-        heap = new PriorityQueue<>();
-
-        for (int i = 0; i < nums.length; i++) heap.add(nums[i]);
-        while (heap.size() > k) heap.remove();
+        for (int i : nums) pq.add(i);
+        while(pq.size() > k) pq.remove();
     }
     
     public int add(int val) {
-        heap.add(val);
-        if (heap.size() > k){
-            heap.remove();
-        }
+        pq.add(val);
+        if (pq.size() > k) pq.remove();
 
-        return heap.peek();
+        return pq.peek();
     }
 }
 
