@@ -1,51 +1,47 @@
-import java.util.*;
-class pft {
-    HashMap<Character, pft> branches =  new HashMap<>();
-    boolean end = false;
-}
+    class pfx {
+        HashMap<Character, pfx> tree = new HashMap<>();
+        boolean ending = false;
+    }
 class Trie {
-    pft main;
+
+    pfx ss;
     public Trie() {
-        main = new pft();
+        ss = new pfx();
     }
-   
+    
     public void insert(String word) {
-        pft cur = main;
+        pfx cur = ss;
 
-        for (char c : word.toCharArray()){
-            if (!cur.branches.containsKey(c)){
-                cur.branches.put(c, new pft());
+        for (char s : word.toCharArray()){
+            if (!cur.tree.containsKey(s)){
+                cur.tree.put(s, new pfx());
             }
-            cur = cur.branches.get(c);
+            cur = cur.tree.get(s);
         }
-        cur.end = true;
-        
+        cur.ending = true;
+        return;
     }
-   
+    
     public boolean search(String word) {
-        pft cur = main;
-
-        for (char c: word.toCharArray()){
-            if (!cur.branches.containsKey(c)){
+        pfx cur = ss;
+        for (char c : word.toCharArray()){
+            if (!cur.tree.containsKey(c)){
                 return false;
             }
-            cur = cur.branches.get(c);
+            cur = cur.tree.get(c);
         }
-
-        return cur.end;
-
+        return cur.ending;
     }
-   
+    
     public boolean startsWith(String prefix) {
-        pft cur = main;
+        pfx cur = ss;
 
         for (char c: prefix.toCharArray()){
-            if (!cur.branches.containsKey(c)){
+            if (!cur.tree.containsKey(c)){
                 return false;
             }
-            cur = cur.branches.get(c);
+            cur = cur.tree.get(c);
         }
-
         return true;
     }
 }
