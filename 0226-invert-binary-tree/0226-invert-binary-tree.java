@@ -14,18 +14,14 @@
  * }
  */
 class Solution {
-    // public TreeNode swapper(TreeNode)
-
     public TreeNode invertTree(TreeNode root) {
         if (root == null) return null;
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
 
-        TreeNode tmp = root.right;
-        root.right = root.left;
-        root.left = tmp;
-
-        invertTree(root.right);
         invertTree(root.left);
-
+        invertTree(root.right);
         return root;
     }
 }
