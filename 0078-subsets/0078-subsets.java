@@ -1,22 +1,25 @@
 class Solution {
-    public void ss (List<Integer> cur, List<List<Integer>> res, int[] nums, int i){
-        if (i == nums.length) {
-            res.add(new ArrayList<Integer>(cur));
-            return ;
+    public void dfs (List<List<Integer>> res, List<Integer> cur, int i, int[] nums){
+        if (i == nums.length ){
+            List<Integer> tmp = new ArrayList<>(cur);
+            res.add(tmp);
+            return;
         }
 
         cur.add(nums[i]);
-        ss(cur, res, nums, i+1);
-
+        dfs(res, cur, i+1, nums);
         cur.remove(cur.size() - 1);
-        ss(cur, res, nums, i+1);
+        dfs(res, cur, i+1, nums);
     }
 
+
     public List<List<Integer>> subsets(int[] nums) {
+
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> cur = new ArrayList<>();
 
-        ss(cur, res, nums, 0);
+        dfs(res, cur, 0, nums);
         return res;
+        
     }
 }
