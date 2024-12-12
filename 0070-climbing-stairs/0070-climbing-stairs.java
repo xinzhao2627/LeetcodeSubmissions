@@ -7,7 +7,7 @@ class Solution {
         for (int i = 0; i < n-1; i++){
             int tmp =  a;
             a = a+b;
-            b = a;
+            b = tmp;
         }
         return a;
 
