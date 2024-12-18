@@ -1,25 +1,22 @@
 import java.util.*;
 class Solution {
-    public void dfs(String airport, List<String> res, Map<String, PriorityQueue<String>> graph){
-        PriorityQueue<String> pq = graph.get(airport);
+    public void dfs(String airport, List<String> res, Map<String, PriorityQueue<String>> travel){
+        PriorityQueue<String> q = travel.get(airport);
 
-        while (pq != null && !pq.isEmpty()) {
-            dfs(pq.poll(), res, graph);
+        while  (q != null && !q.isEmpty() ){
+            dfs(q.poll(), res, travel);
         }
         res.addFirst(airport);
     }
-
     public List<String> findItinerary(List<List<String>> tickets) {
-        
+        Map<String, PriorityQueue<String>> travel = new HashMap<>();
         List<String> res = new LinkedList<>();
 
-        Map<String, PriorityQueue<String>> graph = new HashMap<>();
-
-        for (List<String> ticket : tickets){
-            graph.putIfAbsent(ticket.get(0), new PriorityQueue<>());
-            graph.get(ticket.get(0)).add(ticket.get(1));
+        for (List<String> t : tickets){
+            travel.putIfAbsent(t.get(0), new PriorityQueue<>());
+            travel.get(t.get(0)).add(t.get(1));
         }
-        dfs("JFK", res, graph);
+        dfs("JFK",res, travel);
         return res;
     }
 }
