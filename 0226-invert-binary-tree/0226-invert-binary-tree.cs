@@ -17,8 +17,11 @@ public class Solution {
         TreeNode tmp = root.left;
         root.left = root.right;
         root.right = tmp;
-        InvertTree(root.right);
+
         InvertTree(root.left);
-        return root; 
+        InvertTree(root.right);
+
+
+        return root;
     }
 }
