@@ -1,15 +1,16 @@
 public class Solution {
+    int[][] directions = new int [][]{
+        new int[] {1,0},
+        new int[] {0,1},
+        new int[] {-1,0},
+        new int[] {0,-1}
+    };
     public void bfs(char[][] grid, int r_len, int c_len, int i , int j){
         grid[i][j] = '0';
         Queue<int[]> q = new Queue<int[]>();
         q.Enqueue(new int[] {i, j});
         
-        int[][] directions = new int [][]{
-            new int[] {1,0},
-            new int[] {0,1},
-            new int[] {-1,0},
-            new int[] {0,-1}
-        };
+
 
         while (q.Count() > 0){
             int[] point = q.Dequeue();
