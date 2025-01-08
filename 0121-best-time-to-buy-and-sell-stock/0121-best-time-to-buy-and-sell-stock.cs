@@ -5,7 +5,7 @@ public class Solution {
 
         foreach (int p in prices){
             cur = (p < cur) ? p:cur;
-            res = (p-cur > res) ? p : res;
+            res = (p-cur > res) ? p-cur : res;
         }
         return res;
     }
