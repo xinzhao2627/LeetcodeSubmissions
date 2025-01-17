@@ -1,24 +1,13 @@
-import java.util.*;
 class Solution {
     public boolean isValid(String s) {
-        if (s.length() <= 1) return false;
+        Stack<Character> a = new Stack<>();
 
-        Stack<Character> stack = new Stack<>();
-
-        for (char c: s.toCharArray()){
-            if (c == '['){
-                stack.push(']');
-            }else if (c == '{'){
-                stack.push('}');
-            } else if (c == '('){
-                stack.push(')');
-            } else if (stack.isEmpty()){
-                return false;
-            } else if (stack.pop() != c){
-                return false;
-            }
+        for (char c : s.toCharArray()){
+            if (c == '{') a.push('}');
+            else if (c == '[') a.push(']');
+            else if (c == '(') a.push(')');
+            else if (a.isEmpty() || c != a.pop()) return false;
         }
-
-        return stack.isEmpty();
+        return a.isEmpty();
     }
 }
