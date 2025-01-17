@@ -6,7 +6,7 @@ public class Solution {
             if (c == '{') cs.Push('}');
             else if (c == '(') cs.Push(')');
             else if (c == '[') cs.Push(']');
-            else if (cs.Count > 0 && c != (char)cs.Pop()) return false;
+            else if (cs.Count == 0 || c != (char)cs.Pop()) return false;
         }
         return cs.Count == 0;
     }
