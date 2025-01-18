@@ -1,7 +1,7 @@
 public class Solution {
     public bool ContainsDuplicate(int[] nums) {
-        HashSet<int> ss = new HashSet<int>();
-        for (int i = 0; i < nums.Length; i++) if(!ss.Add(nums[i])) return true;
+        HashSet<int> res = new HashSet<int>();
+        foreach (int n in nums) if (!res.Add(n)) return true;
         return false;
     }
 }
