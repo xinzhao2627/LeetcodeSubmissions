@@ -1,7 +1,7 @@
 public class Solution {
     public int SingleNumber(int[] nums) {
         int res = 0;
-        foreach(int n in nums) res ^= n;
+        for(int i = 0; i < nums.Length; i++) res ^= nums[i];
         return res;
     }
 }
