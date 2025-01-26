@@ -1,6 +1,6 @@
 class Solution {
     public void Dfs(List<List<Integer>> res, List<Integer> cur, int[] nums, int i){
-        if (i > nums.length-1){
+        if (i == nums.length){
             res.add(new ArrayList<Integer>(cur));
             return;
         }
