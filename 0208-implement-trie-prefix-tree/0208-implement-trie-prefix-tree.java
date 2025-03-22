@@ -1,46 +1,42 @@
-    class pfx {
-        HashMap<Character, pfx> tree = new HashMap<>();
-        boolean ending = false;
-    }
 class Trie {
-
-    pfx ss;
+    class PrefixTree {
+        HashMap<Character, PrefixTree> hs = new HashMap<>();
+        boolean isEnd = false;
+    }
+    PrefixTree pf;
     public Trie() {
-        ss = new pfx();
+        pf = new PrefixTree();
     }
     
     public void insert(String word) {
-        pfx cur = ss;
-
-        for (char s : word.toCharArray()){
-            if (!cur.tree.containsKey(s)){
-                cur.tree.put(s, new pfx());
+        PrefixTree cur = pf;
+        for (char c: word.toCharArray()){
+            if (!cur.hs.containsKey(c)){
+                cur.hs.put(c, new PrefixTree());
             }
-            cur = cur.tree.get(s);
+            cur = cur.hs.get(c);
         }
-        cur.ending = true;
-        return;
+        cur.isEnd = true;
     }
     
     public boolean search(String word) {
-        pfx cur = ss;
-        for (char c : word.toCharArray()){
-            if (!cur.tree.containsKey(c)){
+        PrefixTree cur = pf;
+        for (char c: word.toCharArray()){
+            if (!cur.hs.containsKey(c)){
                 return false;
             }
-            cur = cur.tree.get(c);
+            cur = cur.hs.get(c);
         }
-        return cur.ending;
+        return cur.isEnd;
     }
     
     public boolean startsWith(String prefix) {
-        pfx cur = ss;
-
+        PrefixTree cur = pf;
         for (char c: prefix.toCharArray()){
-            if (!cur.tree.containsKey(c)){
+            if (!cur.hs.containsKey(c)){
                 return false;
             }
-            cur = cur.tree.get(c);
+            cur = cur.hs.get(c);
         }
         return true;
     }
