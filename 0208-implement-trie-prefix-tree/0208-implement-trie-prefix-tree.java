@@ -1,7 +1,7 @@
 class Trie {
     class PrefixTree {
         HashMap<Character, PrefixTree> hs = new HashMap<>();
-        boolean isEnd = false;
+        boolean isEnding = false;
     }
     PrefixTree pf;
     public Trie() {
@@ -10,32 +10,29 @@ class Trie {
     
     public void insert(String word) {
         PrefixTree cur = pf;
-        for (char c: word.toCharArray()){
-            if (!cur.hs.containsKey(c)){
-                cur.hs.put(c, new PrefixTree());
-            }
+
+        for (char c : word.toCharArray()){
+            if (!cur.hs.containsKey(c)) cur.hs.put(c, new PrefixTree());
             cur = cur.hs.get(c);
         }
-        cur.isEnd = true;
+        cur.isEnding = true;
     }
     
     public boolean search(String word) {
         PrefixTree cur = pf;
-        for (char c: word.toCharArray()){
-            if (!cur.hs.containsKey(c)){
-                return false;
-            }
+
+        for (char c : word.toCharArray()){
+            if (!cur.hs.containsKey(c)) return false;
             cur = cur.hs.get(c);
         }
-        return cur.isEnd;
+        return cur.isEnding;
     }
     
     public boolean startsWith(String prefix) {
         PrefixTree cur = pf;
-        for (char c: prefix.toCharArray()){
-            if (!cur.hs.containsKey(c)){
-                return false;
-            }
+
+        for (char c : prefix.toCharArray()){
+            if (!cur.hs.containsKey(c)) return false;
             cur = cur.hs.get(c);
         }
         return true;
