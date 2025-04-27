@@ -1,21 +1,22 @@
 class Solution {
-    Map<String , PriorityQueue<String>> airports = new HashMap<>();
-    List<String> res = new LinkedList<>();
+    public void dfs(HashMap<String, PriorityQueue<String>> hs, List<String> res, String airport){
+        PriorityQueue<String> ds = hs.get(airport);
 
-    public void dfs(String airport){
-        PriorityQueue<String> pq= airports.get(airport);
-        while(pq != null && !pq.isEmpty()) dfs(pq.poll());
+        while (ds != null && !ds.isEmpty()){
+            dfs(hs, res, ds.poll());
+        }
         res.addFirst(airport);
-        
+        return;
     }
     public List<String> findItinerary(List<List<String>> tickets) {
-
-        for (List<String> t : tickets){
-            airports.putIfAbsent(t.get(0), new PriorityQueue<>());
-            airports.get(t.get(0)).add(t.get(1));
+        HashMap<String, PriorityQueue<String>> hs = new HashMap<>();
+        List<String> res = new  LinkedList<>();
+        for (List<String> t: tickets){
+            if (!hs.containsKey(t.get(0))) hs.put(t.get(0), new PriorityQueue<String>());
+            hs.get(t.get(0)).add(t.get(1));
         }
-        dfs("JFK");
-        return res;
+        dfs(hs, res, "JFK");
 
+        return res;
     }
 }
