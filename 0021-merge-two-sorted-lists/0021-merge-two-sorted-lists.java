@@ -25,7 +25,7 @@ class Solution {
             cur = cur.next;
         }
 
-        cur = (list1 !=null ) ? list1 : list2;
+        cur.next = (list1 !=null ) ? list1 : list2;
         return res.next;
     }
 }
