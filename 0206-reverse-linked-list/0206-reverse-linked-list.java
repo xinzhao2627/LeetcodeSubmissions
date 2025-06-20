@@ -9,15 +9,24 @@
  * }
  */
 class Solution {
+    public void recursion(ListNode cur, ListNode prev){
+        if (cur == null) return;
+
+        ListNode tmp = cur.next;
+        cur.next = prev;
+        recursion(tmp, prev);
+    }
     public ListNode reverseList(ListNode head) {
         ListNode cur = head;
         ListNode prev = null;
+
         while (cur != null){
             ListNode tmp = cur.next;
-            cur.next = prev;
+            cur.next =  prev;
             prev = cur;
-            cur = tmp;
+            cur =  tmp;
         }
+        // recursion(cur, prev);
         return prev;
     }
 }
