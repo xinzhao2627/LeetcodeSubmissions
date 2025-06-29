@@ -11,34 +11,31 @@ class WordDictionary {
     public void addWord(String word) {
         PrefixTree cur = pf;
         for (int i = 0; i < word.length(); i++){
-            if (!cur.hs.containsKey(word.charAt(i))){
-                cur.hs.put(word.charAt(i), new PrefixTree());
-            }
-            cur = cur.hs.get(word.charAt(i));
+            char c = word.charAt(i);
+            if (!cur.hs.containsKey(c)) cur.hs.put(c, new PrefixTree());
+
+            cur = cur.hs.get(c);
         }
         cur.isEnd = true;
     }
-    public boolean dfs(String word, int i, PrefixTree cur){
-        if (i == word.length()) {
-            // System.out.println("yee" + " " + word);
-            return cur.isEnd;
-        }
+    public boolean dfs(PrefixTree cur, String word, int i){
+        if (i == word.length()) return cur.isEnd; 
+        
         if (word.charAt(i) == '.'){
-            boolean currentBoolean = false;
-            for (PrefixTree t: cur.hs.values()){
-                currentBoolean = dfs(word, i+1, t) || currentBoolean;
-            }
-            return currentBoolean;
-        } else if (cur.hs.containsKey(word.charAt(i))){
-            cur = cur.hs.get(word.charAt(i));
-            return dfs(word, i+1, cur);
-        } else {
+            for (PrefixTree c: cur.hs.values())
+                if (dfs(c, word, i+1)) return true;
             return false;
+        } else if (cur.hs.containsKey(word.charAt(i))){
+            return dfs(cur.hs.get(word.charAt(i)), word, i+1);
         }
-    }   
+
+        return false;
+        
+    }
+    
     public boolean search(String word) {
         PrefixTree cur = pf;
-        return dfs(word, 0, cur);
+        return dfs(cur, word, 0);
     }
 }
 
