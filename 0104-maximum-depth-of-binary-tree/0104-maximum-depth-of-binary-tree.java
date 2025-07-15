@@ -14,18 +14,11 @@
  * }
  */
 class Solution {
-    public int getMax(TreeNode cur, int count){
-        if (cur == null) return count;
-
-        int l = getMax(cur.left, count+1);
-        int r = getMax(cur.right, count+1);
-
-        
-        
-        return Math.max(l, r);
-    }
+    public int dfs(TreeNode root, int i){
+        if (root == null) return i;
+        return Math.max(dfs(root.left, i+1), dfs(root.right, i+1));
+    } 
     public int maxDepth(TreeNode root) {
-        return getMax(root, 0);    
+        return dfs(root, 0);
     }
-
 }
