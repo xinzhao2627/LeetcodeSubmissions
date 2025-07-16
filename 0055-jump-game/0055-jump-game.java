@@ -3,9 +3,7 @@ class Solution {
         int steps = 0;
         for (int i = 0; i < nums.length -1; i++){
             int n = nums[i];
-            System.out.println("steps: " + steps);
             if (n >= nums.length -1 ) {
-                // System.out.println(n);
                 return true;
             }
             
