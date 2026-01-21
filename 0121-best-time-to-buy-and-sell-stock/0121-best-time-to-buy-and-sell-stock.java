@@ -1,12 +1,18 @@
 class Solution {
     public int maxProfit(int[] prices) {
-        int lowest = prices[0];
         int profit = 0;
-
-        for (int n: prices){
-            lowest = lowest < n ? lowest : n;
-            profit = n - lowest > profit? n-lowest : profit;
+        int buyAt = 0;
+        for (int i = 0; i < prices.length; i++){
+            int p = prices[i];
+            if (prices[buyAt] > p){
+                buyAt = i;
+            }
+            int current_profit = p - prices[buyAt];
+            if (current_profit > profit){
+                profit = current_profit;
+            }
         }
+
         return profit;
     }
 }
