@@ -1,43 +1,40 @@
 class Solution {
-    int[][] directions = new int[][] {
-        {0, 1},
-        {0, -1},
-        {1, 0},
-        {-1, 0}
-    };
-    public void bfs(char[][] grid, int i, int j, int r, int c){
-        Queue<int[]> queue = new LinkedList<>();
-        grid[i][j] = '0';
-
-        queue.add(new int[]{i, j});
-
-        while (!queue.isEmpty()){
-            int[] el = queue.remove();
-
-            for (int[ ] d : directions){
-                int nr = d[0] + el[0];
-                int nc = d[1] + el[1];
-
-                if (nr >= 0 && nc >= 0 && nr < r && nc < c && grid[nr][nc] == '1'){
-                    grid[nr][nc] = '0';
-                    queue.add(new int[] {nr, nc});
-                }
-            }
+    int r;
+    int c;
+    // i is row index, j is column index
+    public void recursion(int i, int j, char[][] grid){
+        if (i-1 > 0 && grid[i-1][j] == '1'){
+            grid[i-1][j] = '0';
+            recursion(i-1, j, grid);
         } 
-
+        if (i+1 < r && grid[i+1][j] == '1'){
+            grid[i+1][j] = '0';
+            recursion(i+1, j, grid);
+        }
+        if (j-1 > 0 && grid[i][j-1] == '1'){
+            grid[i][j-1] = '0';
+            recursion(i, j-1, grid);
+        }
+        if (j+1 < c && grid[i][j+1] == '1'){
+            grid[i][j+1] = '0';
+            recursion(i, j+1, grid);
+        }
+        return;
+        
     }
     public int numIslands(char[][] grid) {
-        int r = grid.length;
-        int c = grid[0].length;
-        int res = 0;
+        r = grid.length;
+        c = grid[0].length;
+        int count = 0;
         for (int i = 0; i < r; i++){
             for (int j = 0; j < c; j++){
                 if (grid[i][j] == '1'){
-                    bfs(grid, i, j, r, c);
-                    res++;
+                    count++;
+                    grid[i][j] = '0';
+                    recursion(i, j, grid);
                 }
             }
         }
-        return res;
+        return count;
     }
 }
