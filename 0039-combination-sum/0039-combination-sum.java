@@ -1,22 +1,26 @@
 class Solution {
-    public void dfs(List<List<Integer>> res, List<Integer> cur, int i, int sum, int[] candidates, int target){
-        if (sum == target) res.add(new ArrayList<>(cur));
-        else if (sum < target && i < candidates.length){
-            int n = candidates[i];
-
-            cur.add(n);
-            dfs(res, cur, i, sum+n, candidates, target);
-
-            cur.remove(cur.size() - 1);
-            dfs(res, cur, i+1, sum, candidates, target);
+    int target;
+    int[] candidates;
+    public void dfs(int i, int sum, List<Integer> cur, List<List<Integer>> res ){
+        if (sum == target){
+            res.add(new ArrayList<>(cur));
+            return;
         }
-        return;
+
+        if (i > candidates.length - 1 || sum > target) return;
+
+        cur.add(candidates[i]);
+        dfs(i, sum+candidates[i], cur, res);
+        
+        cur.remove(cur.size() - 1);
+        dfs(i+1, sum, cur, res );
     }
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<Integer> cur=  new ArrayList<>();
+        this.target = target;
+        this.candidates = candidates;
         List<List<Integer>> res = new ArrayList<>();
-
-        dfs(res, cur, 0, 0, candidates, target);
+        List<Integer> cur = new ArrayList<>();
+        dfs(0, 0, cur, res);
         return res;
     }
 }
