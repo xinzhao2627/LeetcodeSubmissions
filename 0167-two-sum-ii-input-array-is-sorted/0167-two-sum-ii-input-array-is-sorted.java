@@ -3,15 +3,16 @@ class Solution {
         int i = 0;
         int j = numbers.length - 1;
 
-
-        while (i < j){
+        while (i < j) {
             int ni = numbers[i];
             int nj = numbers[j];
-
-            if (ni + nj > target){
+            int nij = ni + nj;
+            if (nij > target){
                 j--;
-            } else if (ni + nj < target){
+                continue;
+            } else if (nij < target) {
                 i++;
+                continue; 
             } else {
                 return new int[] {i+1, j+1};
             }
