@@ -1,17 +1,26 @@
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
+        Stack<Character> balance = new Stack<>();
 
         for (char c : s.toCharArray()){
-            if (c == '(') stack.add(')');
-            else if (c == '[') stack.add(']');
-            else if (c == '{') stack.add('}');
+            try {
+                if (c == '('){
+                    balance.push(')');
+                } else if (c == '[') {
+                    balance.push(']');
+                } else if (c == '{') {
+                    balance.push('}');
 
-            else {
-                if (stack.isEmpty()) return false;
-                if (stack.pop() != c) return false;
+                } else {
+                    char popped = balance.pop();
+                    if (popped != c) {
+                        return false;
+                    }
+                }
+            } catch (Exception e) {
+                return false;
             }
         }
-        return stack.isEmpty();
+        return balance.size() > 0 ? false : true;
     }
 }
