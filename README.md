@@ -25,4 +25,12 @@
 | ------- |
 | [0074-search-a-2d-matrix](https://github.com/xinzhao2627/LeetcodeSubmissions/tree/master/0074-search-a-2d-matrix) |
 | [0167-two-sum-ii-input-array-is-sorted](https://github.com/xinzhao2627/LeetcodeSubmissions/tree/master/0167-two-sum-ii-input-array-is-sorted) |
+## String
+|  |
+| ------- |
+| [0020-valid-parentheses](https://github.com/xinzhao2627/LeetcodeSubmissions/tree/master/0020-valid-parentheses) |
+## Stack
+|  |
+| ------- |
+| [0020-valid-parentheses](https://github.com/xinzhao2627/LeetcodeSubmissions/tree/master/0020-valid-parentheses) |
 <!---LeetCode Topics End-->
